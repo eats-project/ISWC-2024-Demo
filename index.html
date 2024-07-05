@@ -41,16 +41,20 @@
 
   <h3>Creating Calcualtion Method Plan</h3>
 
-  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/i0xuzsKI5nw?si=ii1-C9s_n1-N8EFV" title="YouTube video player" frameborder="0" referrerpolicy="no-referrer" allowfullscreen></iframe>
-
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/p5SX-KUAP9U?si=rVt30L8OfhHvr2J5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  
+  <li>(0:00 - 0:06) Name the calculation method.</li>
+  <li>(0:06 - 0:35) Build the calculation method by describing individual steps and the logic that shoudl be performed during step execution. In our case we want to multiply two inputs (Electricity Usage and Electricity Conversion Factor) to obtain an output (Electricity Footprint).   </li>
+  <li>(0:35 - 1:14) Assign  SPARQL CONSTRUCT <a href="https://github.com/eats-project/farm-explorer/blob/main/src/main/resources/static/data/examples/exampleQueries.txt">queries</a> to the individual parts of the step calculation logic to generate corresponding parts of the provenance trace. The queries use special symbols $Asset, $Output, $Variable which are automatically replaced by the specific IRIs. $Asset - IRI of the asset for which the calcualtian is performed (e.g. irrigation rig); $Variable - IRI of teh variable relating to the specific part of the calculation formula (e.g. conversion factor); $Output - the value calculated by executing a step (e.g. result of multiplying two inputs).   </li>
+  <li>(1:14 - 2:12) Overview of the saved calculation method. </li>
   <h3>Calculating Emsissons Estimate</h3>
 
  <iframe width="560" height="315" src="https://www.youtube.com/embed/ojn0N9wreFY?si=2wyuBrPRTV6oz8ib" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-  <li>(0:00 - 0:06) Select the asset for which you want to calculate the footprint estimate</li>
-  <li>(0:06 - 0:10) Check that the asset is associated with at least one emission calculation formula</li>
+  <li>(0:00 - 0:06) Select the asset for which you want to calculate the footprint estimate.</li>
+  <li>(0:06 - 0:10) Check that the asset is associated with at least one emission calculation formula.</li>
   <li>(0:10 - 0:21) The system executes the calcualtion formula by looking up the required observations (in this case electricity observations produced by teh electricity meter) and conversion factors as specified by the SPARQL queries. The information shown on the Carbon Footprint Estimate tab lists details of any peco:EmissionScore and the corresponding calculation formula recorded in teh provenance trace. </li>
-  <li>(0:21 - 0:31) A detail view of teh provenance trace showing details of individual calculation steps and their inputs and outputs.</li>
+  <li>(0:21 - 0:31) A detail view of the provenance trace showing details of individual calculation steps and their inputs and outputs.</li>
   <li>(0:31 - 0:41) Details of the conversion factor used in the calculation</li>
   <li>(0:41 - 0:48) The tool performes four example <a href="https://github.com/eats-project/farm-explorer/blob/main/src/main/resources/validation/queries.csv">validation queries</a> on the provenance trace. In this case a warning for a potentially out of date conversion factor is displayed.</li>
   
