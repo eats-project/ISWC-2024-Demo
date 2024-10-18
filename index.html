@@ -6,6 +6,33 @@
     body {
       padding: 25px;
     }
+     /* Basic styling for the iframe container */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            max-width: 1000px;
+            margin: auto;
+            border: 1px solid #ccc;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .fullscreen-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
   </style>
 </head>
 
@@ -17,6 +44,46 @@
     This page was prepared for the demo presentation at the International Semantic Web Conference (ISWC), 2024.
     The work presented here was produced as part of the <a href="https://eats.org.uk"> EATS project</a>.
   </p>
+
+  <h2>Live Demo</h2>
+     <div class="iframe-container" id="iframe-container">
+        <iframe id="my-iframe" src="https://eats.abdn.ac.uk" allowfullscreen></iframe>
+        <button class="fullscreen-button" onclick="toggleFullscreen()">Go Fullscreen</button>
+    </div>
+
+    <script>
+        function toggleFullscreen() {
+            const iframeContainer = document.getElementById('iframe-container');
+            const button = iframeContainer.querySelector('.fullscreen-button');
+
+            // Check if the document is already in fullscreen mode
+            if (!document.fullscreenElement) {
+                // Request fullscreen for the iframe container
+                if (iframeContainer.requestFullscreen) {
+                    iframeContainer.requestFullscreen();
+                } else if (iframeContainer.mozRequestFullScreen) { // Firefox
+                    iframeContainer.mozRequestFullScreen();
+                } else if (iframeContainer.webkitRequestFullscreen) { // Chrome, Safari, Opera
+                    iframeContainer.webkitRequestFullscreen();
+                } else if (iframeContainer.msRequestFullscreen) { // IE/Edge
+                    iframeContainer.msRequestFullscreen();
+                }
+                button.textContent = 'Exit Fullscreen';
+            } else {
+                // Exit fullscreen mode
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { // Firefox
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { // IE/Edge
+                    document.msExitFullscreen();
+                }
+                button.textContent = 'Go Fullscreen';
+            }
+        }
+    </script>
 
   <h2>Demo Video</h2>
 
