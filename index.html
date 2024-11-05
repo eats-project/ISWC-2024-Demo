@@ -1,27 +1,56 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Farm Explorer Demo</title>
-  <style>
-    body {
-      padding: 25px;
-    }
-     /* Basic styling for the iframe container */
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Explorer Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        nav {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 75px 25px 25px 25px; /* Add top padding to avoid overlap with the fixed nav */
+        }
+        section {
+            margin-bottom: 40px;
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+        }
         .iframe-container {
             position: relative;
             width: 100%;
-            height: 600px;
-            max-width: 1000px;
-            margin: auto;
+            max-width: 800px; /* Adjust as needed */
+            height: 450px; /* Set a fixed height */
+            margin: 20px auto;
             border: 1px solid #ccc;
         }
-
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-
         .fullscreen-button {
             position: absolute;
             top: 10px;
@@ -33,126 +62,134 @@
             cursor: pointer;
             z-index: 1000;
         }
-  </style>
+    </style>
 </head>
-
 <body>
 
-  <h1>ISWC 2024 Demo</h1>
+    <nav>
+        <a href="#demo">Live Demo</a>
+        <a href="#videos">Demo Videos</a>
+        <a href="#publications">Related Publications</a>
+        <a href="#resources">Related Resources</a>
+        <a href="#contact">Contact</a>
+        <a href="#acknowledgments">Acknowledgments</a>
+    </nav>
 
-  <p>
-    This page was prepared for the demo presentation at the International Semantic Web Conference (ISWC), 2024.
-    The work presented here was produced as part of the <a href="https://eats.org.uk"> EATS project</a>.
-  </p>
+    <div class="container">
+        <section id="introduction">
+            <h1>ISWC 2024 Demo</h1>
+            <p>
+                This page was prepared for the demo presentation at the International Semantic Web Conference (ISWC), 2024.
+                The work presented here was produced as part of the <a href="https://eats.org.uk">EATS project</a>.
+            </p>
+        </section>
 
-  <h2>Live Demo</h2>
+        <section id="demo">
+            <h2>Live Demo</h2>
+            <p>Best viewed on a large screen and click on the fullscreen button.</p>
+            <p>Some features requiring write access into the graph store have been disabled in the demo.</p>
+            <div class="iframe-container" id="iframe-container">
+                <iframe id="my-iframe" src="https://eats.abdn.ac.uk" allowfullscreen></iframe>
+                <button class="fullscreen-button" onclick="toggleFullscreen()">Go Fullscreen</button>
+            </div>
+            <script>
+                function toggleFullscreen() {
+                    const iframeContainer = document.getElementById('iframe-container');
+                    const button = iframeContainer.querySelector('.fullscreen-button');
+                    if (!document.fullscreenElement) {
+                        if (iframeContainer.requestFullscreen) {
+                            iframeContainer.requestFullscreen();
+                        } else if (iframeContainer.mozRequestFullScreen) {
+                            iframeContainer.mozRequestFullScreen();
+                        } else if (iframeContainer.webkitRequestFullscreen) {
+                            iframeContainer.webkitRequestFullscreen();
+                        } else if (iframeContainer.msRequestFullscreen) {
+                            iframeContainer.msRequestFullscreen();
+                        }
+                        button.textContent = 'Exit Fullscreen';
+                    } else {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                        button.textContent = 'Go Fullscreen';
+                    }
+                }
+            </script>
+        </section>
 
-  <p> Best viewed on a large screen and click on the fullscreen button.  </p>
+        <section id="videos">
+            <h2>Demo Videos</h2>
+            <p>A set of initial videos explaining different functionalities of the tool.</p>
 
-  <p>Some feaures requiring write access into the graph store have been dissabled in the demo.</p>
-  
-     <div class="iframe-container" id="iframe-container">
-        <iframe id="my-iframe" src="https://eats.abdn.ac.uk" allowfullscreen></iframe>
-        <button class="fullscreen-button" onclick="toggleFullscreen()">Go Fullscreen</button>
+            <h3>Main Navigation</h3>
+            <div class="iframe-container">
+                <iframe src="https://www.youtube-nocookie.com/embed/wCLYUK9qUmA?si=bNPPZoDyCZ5NbSHy" title="YouTube video player" referrerpolicy="no-referrer" allowfullscreen></iframe>
+            </div>
+		   <ul>
+		       <li>(0:00 - 0:10) Farm details (name, description, location)</li>
+		       <li>(0:10 - 0:25) Overview of the Farm Emissions Sources. The list includes a polytunnel (Tunnel 25) and an irrigation rig. The irrigation rig is modelled as sosa:Actuator with sosa:actsOnProperty relating to the water supply in the polytunnel 25 and the feature of interest being tunnel 25.</li>
+		       <li>(0:25 - 0:42) Details of the electricity sensor observing the electricity consumption of the irrigation rig. Example data include cumulative daily readings for one month simulating consistent irrigation during summer months.</li>
+		     </ul>
+
+            <h3>Creating Calculation Method Plan</h3>
+            <div class="iframe-container">
+                <iframe src="https://www.youtube.com/embed/p5SX-KUAP9U?si=vwOq1rP04CkBON1V" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+		   <ul>
+		     <li>(0:00 - 0:06) Name the calculation method.</li>
+		     <li>(0:06 - 0:35) Build the calculation method by describing individual steps and the logic that should be performed during step execution. In our case we want to multiply two inputs (Electricity Usage and Electricity Conversion Factor) to obtain an output (Electricity Footprint).   </li>
+		     <li>(0:35 - 1:14) Assign  SPARQL CONSTRUCT <a href="https://github.com/eats-project/farm-explorer/blob/main/src/main/resources/static/data/examples/exampleQueries.txt">queries</a> to the individual parts of the step calculation logic to generate corresponding parts of the provenance trace. The queries use $Asset, $Output, $Variable which are automatically replaced by the specific IRIs. $Asset - IRI of the asset for which the calculation is performed (e.g. irrigation rig); $Variable - IRI of the variable relating to the specific part of the calculation formula (e.g. conversion factor); $Output - the value calculated by executing a step (e.g. result of multiplying two inputs).   </li>
+		     <li>(1:14 - 2:12) An overview of the saved calculation method. </li>
+		     <h3>Calculating Emsissons Estimate</h3>
+		      </ul>
+
+            <h3>Calculating Emissions Estimate</h3>
+            <div class="iframe-container">
+                <iframe src="https://www.youtube.com/embed/ojn0N9wreFY?si=2wyuBrPRTV6oz8ib" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+			<ul>
+			  <li>(0:00 - 0:06) Select the asset for which you want to calculate the footprint estimate.</li>
+			  <li>(0:06 - 0:10) Check that the asset is associated with at least one emission calculation formula.</li>
+			  <li>(0:10 - 0:21) The system executes the calculation formula by looking up the required observations (in this case electricity observations produced by teh electricity meter) and conversion factors as specified by the SPARQL queries. The information shown on the Carbon Footprint Estimate tab lists details of any peco:EmissionScore and the corresponding calculation formula recorded in the provenance trace. </li>
+			  <li>(0:21 - 0:31) A detail view of the provenance trace showing details of individual calculation steps and their inputs and outputs.</li>
+			  <li>(0:31 - 0:41) Details of the conversion factor used in the calculation</li>
+			  <li>(0:41 - 0:48) The tool performs four example <a href="https://github.com/eats-project/farm-explorer/blob/main/src/main/resources/validation/queries.csv">validation queries</a> on the provenance trace. In this case a warning for a potentially out of date conversion factor is displayed.</li>
+			  </ul>
+        </section>
+
+        <section id="publications">
+            <h2>Related Publications</h2>
+            <ul>
+                <li>Markovic, M., Garijo, D., Germano, S. and Naja, I., 2023. <a href="https://link.springer.com/chapter/10.1007/978-3-031-47243-5_5">TEC: Transparent emissions calculation toolkit.</a> <em>International Semantic Web Conference</em>, pp. 76-93.</li>
+                <li>Markovic, M., Garijo, D., Edwards, P. and Vasconcelos, W., 2019. <a href="https://ieeexplore.ieee.org/abstract/document/8939260"> Semantic modelling of plans for IoT transparency.</a> <em>IOTSMS</em>, pp. 110-115.</li>
+                <li>Markovic, M., Garijo, D. and Edwards, P., 2019. <a href="https://ceur-ws.org/Vol-2526/short1.pdf"> Linking abstract plans to execution traces.</a> <em>Sciknow 2019</em>.</li>
+            </ul>
+        </section>
+
+        <section id="resources">
+            <h2>Related Resources</h2>
+            <ul>
+                <li><a href="https://w3id.org/ep-plan">EP-PLAN</a></li>
+                <li><a href="https://tec-toolkit.github.io">TEC Toolkit</a></li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Milan Markovic, <a href="https://www.abdn.ac.uk/ncs/profiles/milan.markovic">Homepage</a></p>
+        </section>
+
+        <section id="acknowledgments">
+            <h2>Acknowledgments</h2>
+            <p>This work was supported by the UKRI award for the EATS project (EP/V042270/1) and EPSRC projects: ConCur (EP/V050869/1) and UK FIRES (EP/S019111/1).</p>
+        </section>
     </div>
 
-    <script>
-        function toggleFullscreen() {
-            const iframeContainer = document.getElementById('iframe-container');
-            const button = iframeContainer.querySelector('.fullscreen-button');
-
-            // Check if the document is already in fullscreen mode
-            if (!document.fullscreenElement) {
-                // Request fullscreen for the iframe container
-                if (iframeContainer.requestFullscreen) {
-                    iframeContainer.requestFullscreen();
-                } else if (iframeContainer.mozRequestFullScreen) { // Firefox
-                    iframeContainer.mozRequestFullScreen();
-                } else if (iframeContainer.webkitRequestFullscreen) { // Chrome, Safari, Opera
-                    iframeContainer.webkitRequestFullscreen();
-                } else if (iframeContainer.msRequestFullscreen) { // IE/Edge
-                    iframeContainer.msRequestFullscreen();
-                }
-                button.textContent = 'Exit Fullscreen';
-            } else {
-                // Exit fullscreen mode
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) { // Firefox
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) { // IE/Edge
-                    document.msExitFullscreen();
-                }
-                button.textContent = 'Go Fullscreen';
-            }
-        }
-    </script>
-
-  <h2>Demo Videos</h2>
-
-  <p>
-    A set of initial videos explaining different functionalities of the tool.
-  </p>
-
-  <h3>Main Navigation</h3>
-
-  <p>
-    Overview of the main landing page of the Farm Exploprer and its navigation elements.
-  </p>
-
-  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wCLYUK9qUmA?si=bNPPZoDyCZ5NbSHy" title="YouTube video player" frameborder="0" referrerpolicy="no-referrer" allowfullscreen></iframe>
-
-  <ul>
-    <li>(0:00 - 0:10) Farm details (name, description, location)</li>
-    <li>(0:10 - 0:25) Overview of the Farm Emissions Sources. The list includes a polytunnel (Tunnel 25) and an irrigation rig. The irrigation rig is modelled as sosa:Actuator with sosa:actsOnProperty relating to the water supply in the polytunnel 25 and the feature of interest being tunnel 25.</li>
-    <li>(0:25 - 0:42) Details of the electricity sensor observing the electricity consumption of the irrigation rig. Example data include cumulative daily readings for one month simulating consistent irrigation during summer months.</li>
-  </ul>
-
-  <h3>Creating Calcualtion Method Plan</h3>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/p5SX-KUAP9U?si=vwOq1rP04CkBON1V" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>  
-   <ul>
-  <li>(0:00 - 0:06) Name the calculation method.</li>
-  <li>(0:06 - 0:35) Build the calculation method by describing individual steps and the logic that should be performed during step execution. In our case we want to multiply two inputs (Electricity Usage and Electricity Conversion Factor) to obtain an output (Electricity Footprint).   </li>
-  <li>(0:35 - 1:14) Assign  SPARQL CONSTRUCT <a href="https://github.com/eats-project/farm-explorer/blob/main/src/main/resources/static/data/examples/exampleQueries.txt">queries</a> to the individual parts of the step calculation logic to generate corresponding parts of the provenance trace. The queries use $Asset, $Output, $Variable which are automatically replaced by the specific IRIs. $Asset - IRI of the asset for which the calculation is performed (e.g. irrigation rig); $Variable - IRI of the variable relating to the specific part of the calculation formula (e.g. conversion factor); $Output - the value calculated by executing a step (e.g. result of multiplying two inputs).   </li>
-  <li>(1:14 - 2:12) An overview of the saved calculation method. </li>
-  <h3>Calculating Emsissons Estimate</h3>
-   </ul>
- <iframe width="560" height="315" src="https://www.youtube.com/embed/ojn0N9wreFY?si=2wyuBrPRTV6oz8ib" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  <ul>
-  <li>(0:00 - 0:06) Select the asset for which you want to calculate the footprint estimate.</li>
-  <li>(0:06 - 0:10) Check that the asset is associated with at least one emission calculation formula.</li>
-  <li>(0:10 - 0:21) The system executes the calculation formula by looking up the required observations (in this case electricity observations produced by teh electricity meter) and conversion factors as specified by the SPARQL queries. The information shown on the Carbon Footprint Estimate tab lists details of any peco:EmissionScore and the corresponding calculation formula recorded in the provenance trace. </li>
-  <li>(0:21 - 0:31) A detail view of the provenance trace showing details of individual calculation steps and their inputs and outputs.</li>
-  <li>(0:31 - 0:41) Details of the conversion factor used in the calculation</li>
-  <li>(0:41 - 0:48) The tool performs four example <a href="https://github.com/eats-project/farm-explorer/blob/main/src/main/resources/validation/queries.csv">validation queries</a> on the provenance trace. In this case a warning for a potentially out of date conversion factor is displayed.</li>
-  </ul>
-  <h2>Related Publications</h2>
-  <ul>
-    <li>Markovic, M., Garijo, D., Germano, S. and Naja, I., 2023, October. TEC: Transparent emissions calculation toolkit. In International Semantic Web Conference (pp. 76-93). Cham: Springer Nature Switzerland.</li>
-    <li> Markovic, M., Garijo, D., Edwards, P. and Vasconcelos, W., 2019, October. Semantic modelling of plans and execution traces for enhancing transparency of IoT systems. In 2019 Sixth International Conference on Internet of Things: Systems, Management and Security (IOTSMS) (pp. 110-115). IEEE.</li>
-    <li>Markovic, M., Garijo, D. and Edwards, P., 2019, October. Linking abstract plans of scientific experiments to their corresponding execution traces. In Proceedings of the Third International Workshop on Capturing Scientific Knowledge (Sciknow 2019). CEUR-WS.</li>
-    </li>
-  </ul>
-
-  <h2>Related Resources</h2>
-
-  <ul>
-    <li><a href="https://w3id.org/ep-plan">EP-PLAN - https://w3id.org/ep-plan</li>
-    <li><a href="https://tec-toolkit.github.io">TEC Toolkit</a></li>
-
-  </ul>
-
-  <h2>Contact</h2>
-
-  Milan Markovic, <a href="https://www.abdn.ac.uk/ncs/profiles/milan.markovic"> https://www.abdn.ac.uk/ncs/profiles/milan.markovic</a>
-
-
- <h2> Acknowledgments</h2>
-
-This work was supported by the award made by UKRI to the EATS project (EP/V042270/1), and EPSRC projects: ConCur (EP/V050869/1) and UK FIRES (EP/S019111/1).
 </body>
-
 </html>
